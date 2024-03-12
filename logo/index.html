@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whiterun Animation</title>
+    <style>
+        #elemento {
+            width: 100vw;
+            height: 100vh;
+            opacity: 0;
+            /* Começa invisível */
+            transition: opacity 1s ease;
+            /* Efeito de fade */
+        }
+
+        #elemento img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="elemento">
+        <img src="./logo.png" alt="">
+    </div>
+
+    <script>
+        // Função para mostrar o elemento por 5 segundos, fazer desaparecer e, em seguida, mostrar novamente em loop
+        function animacao() {
+            var elemento = document.getElementById('elemento');
+            const timeLimit = 7000
+
+            // Mostrar elemento por 5 segundos
+            elemento.style.opacity = 1;
+
+            setTimeout(function () {
+                // Fazer desaparecer gradualmente
+                elemento.style.opacity = 0;
+
+                setTimeout(function () {
+                    // Ficar oculto por 5 segundos e, em seguida, mostrar novamente
+                    elemento.style.opacity = 1;
+                    animacao(); // Chamada recursiva para criar um loop infinito
+                }, timeLimit); // Tempo segundos para ficar oculto
+            }, timeLimit); // Tempo segundos para mostrar
+        }
+
+        // Iniciar a animação quando a página carregar
+        window.onload = function () {
+            animacao();
+        };
+    </script>
+
+</body>
+
+</html>
